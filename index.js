@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-
+import "dotenv/config";
 import { connect } from "./src/framework/databases/mongodb/connection.js";
 import { Appication } from "./src/framework/web/Application.js";
 import { UserCase } from "./src/use_cases/UserCase.js";
@@ -10,8 +9,6 @@ import { User } from "./src/entities/User.js";
 import { UserRoutes } from "./src/framework/routes/userRoutes.js";
 import { RouterManager } from "./src/framework/routes/RouterManager.js";
 import { User as userSchema } from "./src/framework/databases/mongodb/schemas/userSchema.js";
-
-dotenv.config();
 
 const userRepository = new UserRepository(userSchema);
 const userService = new UserService(userRepository);

@@ -6,7 +6,7 @@ export class UserCase {
   async registerUser(user) {
     const userExists = await this.userService.userIsRegistered(user.email);
     if (userExists) throw new Error("User already exists");
-    this.userRepository.addUser(user);
-    return user;
+    const result = this.userRepository.addUser(user);
+    return result;
   }
 }
