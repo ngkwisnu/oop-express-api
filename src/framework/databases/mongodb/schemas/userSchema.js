@@ -5,7 +5,10 @@ const userSchema = new mongoose.Schema(
     username: String,
     email: String,
     password: String,
-    role: String,
+    role: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role",
+    },
   },
   { timestamps: true }
 );

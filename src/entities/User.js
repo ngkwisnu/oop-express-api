@@ -6,13 +6,14 @@ export class User {
     this.role = role;
   }
 
-  setUserRepository(UserRepository) {
-    this.UserRepository = UserRepository;
-  }
-
-  add() {
+  getUser() {
     if (this.username && this.email && this.password && this.role) {
-      this.UserRepository.addUser(this);
+      return {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        role: this.role,
+      };
     }
   }
 }

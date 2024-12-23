@@ -1,16 +1,17 @@
 import express from "express";
-
-const router = express.Router();
-
 export class UserRoutes {
-  constructor(userController) {
-    this.router = router;
+  constructor(userController, authMiddleware) {
+    this.router = express.Router();
     this.userController = userController;
+    this.authMiddleware = authMiddleware;
     this.initializeRoutes();
   }
   initializeRoutes() {
-    this.router.post("/register", (req, res) =>
-      this.userController.registerUser(req, res)
+    this.router.get(
+      "/",
+      this.authMiddleware.authenticate,
+      this.authMiddleware.checkPermissions("get"),
+      (req, res) => this.userController.findAllUsers(req, res)
     );
   }
   getRouter() {

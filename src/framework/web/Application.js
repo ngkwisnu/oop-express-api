@@ -1,4 +1,5 @@
 import express from "express";
+import seedPermissions from "../databases/mongodb/seeders/permissionSeeders.js";
 
 const app = express();
 
@@ -8,6 +9,7 @@ export class Appication {
   }
 
   createApp() {
+    seedPermissions();
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     this.routerManager.setApp(app);

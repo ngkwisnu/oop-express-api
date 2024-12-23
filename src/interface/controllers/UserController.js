@@ -5,15 +5,10 @@ export class UserController {
     this.userCase = userCase;
   }
 
-  async registerUser(req, res) {
+  async findAllUsers(req, res) {
     try {
-      const { username, email, password, role } = req.body;
-      const user = new User(username, email, password, role);
-      const userRegistered = await this.userCase.registerUser(user);
-      res.status(201).json({
-        message: "User registered successfully",
-        data: userRegistered,
-      });
+      const users = await this.userCase.findAllUsers();
+      res.status(200).json({ data: users });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
